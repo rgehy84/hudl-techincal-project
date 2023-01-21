@@ -11,7 +11,7 @@ import org.testng.annotations.*;
 
 import java.time.Duration;
 
-public class BaseDriver {
+public class BaseDriver extends BaseUtilities {
     WebDriver driver;
 
     /***
@@ -57,6 +57,7 @@ public class BaseDriver {
             case IE -> driver = new InternetExplorerDriver();
             case EDGE -> driver = new EdgeDriver();
         }
+        print("Tests will be executed in " + browser.name() + " browser");
     }
 
     /***

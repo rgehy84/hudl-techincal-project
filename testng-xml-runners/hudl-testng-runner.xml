@@ -2,6 +2,7 @@
 
 <suite name="Hudl Technical Project" verbose="1" >
     <parameter name="browser_to_run_tests" value="FIREFOX" />
+    <parameter name="url_to_execute_tests" value="http://www.hudl.com/" />
     <test name="Hudl login tests">
         <classes>
             <class name="testcases.LoginTest"/>

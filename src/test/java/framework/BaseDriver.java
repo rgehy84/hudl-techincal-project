@@ -13,6 +13,7 @@ import java.time.Duration;
 
 public class BaseDriver extends BaseUtilities {
     WebDriver driver;
+    String urlToStartTests;
 
     /***
      * maximizes the browser window and sets in implicit wait of 15 seconds before timing out
@@ -68,4 +69,13 @@ public class BaseDriver extends BaseUtilities {
         getDriver().close();
     }
 
+    @Parameters("url_to_execute_tests")
+    @BeforeMethod
+    public void setUrlToTest(@Optional("http://www.hudl.com/") String urlToStartTest) {
+        this.urlToStartTests = urlToStartTest;
+    }
+
+    public String getUrlToStartTests() {
+        return urlToStartTests;
+    }
 }

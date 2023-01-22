@@ -183,6 +183,7 @@ public class LoginPage {
     public void resetPassword(String emailAddress) {
         enterPasswordResetEmail(emailAddress);
         clickSendPasswordResetButton();
+        wait.until(ExpectedConditions.elementToBeClickable(passwordResetSuccessfulHeader));
     }
 
     public void clickLoginAsOrganizationButton() {

@@ -18,11 +18,7 @@
     <test name="Hudl login tests - Chrome">
         <parameter name="browser_to_run_tests" value="CHROME" />
         <classes>
-            <class name="testcases.LoginTest">
-                <!--<methods>
-                    <include name="validateThatUserSuccessfullySwitchesBetweenLoginAsOrganizationAndUser" />
-                </methods>-->
-            </class>
+            <class name="testcases.LoginTest" />
         </classes>
     </test>
     <!--<test name="Hudl login tests - Safari">

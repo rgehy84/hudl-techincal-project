@@ -17,6 +17,7 @@
         <testng.version>7.7.1</testng.version>
         <webdrivermanager.version>5.3.2</webdrivermanager.version>
         <extent-reports.version>5.0.9</extent-reports.version>
+        <dataprovider.version>14.3.0</dataprovider.version>
     </properties>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
@@ -48,6 +49,11 @@
             <groupId>com.aventstack</groupId>
             <artifactId>extentreports</artifactId>
             <version>${extent-reports.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.hemanthsridhar</groupId>
+            <artifactId>testng-ext-dataprovider</artifactId>
+            <version>${dataprovider.version}</version>
         </dependency>
     </dependencies>
 </project>

@@ -23,7 +23,7 @@ public class AuthNavigation {
     @FindBy(css = "div.hui-globaluseritem__display-name")
     WebElement yourAccountLink;
 
-    @FindBy(css = "//a[contains(@class,'hui-globalusermenu__item')]/span[.='Log Out']")
+    @FindBy(xpath = "//a[contains(@class,'hui-globalusermenu__item')]/span[.='Log Out']")
     WebElement logOut;
 
     public WebElement getHomeLink() {
@@ -40,5 +40,10 @@ public class AuthNavigation {
 
     public WebElement getLogOut() {
         return logOut;
+    }
+
+    public void logOutOfHudl() {
+        wda.click(getYourAccountLink(), "Your Account link in top right corner");
+        wda.click(getLogOut(), "Log out link in submenu");
     }
 }

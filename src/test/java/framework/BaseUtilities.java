@@ -3,6 +3,11 @@ package framework;
 import com.aventstack.extentreports.Status;
 import org.testng.Reporter;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import static framework.reporting.extent.ExtentTestManager.getTest;
+
 public class BaseUtilities {
 
     /***
@@ -22,5 +27,31 @@ public class BaseUtilities {
      */
     public void print(String textToOutput, Status status) {
         Reporter.log(textToOutput, true);
+
+        try {
+            getTest().log(status, textToOutput);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Uses SimpleDateFormat to generate a timestamp
+     * @param pattern format of the timestamp to generate
+     * @return the generated timestamp
+     */
+    public static String timestamp(String pattern) {
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        return simpleDateFormat.format(date);
+    }
+
+    /**
+     * Generates a timestamp
+     * @return Timestamp is returned in yyyy-MM-dd_HH-mm-ss format
+     */
+    public String timestamp() {
+        String pattern = "yyyy-MM-dd_HH-mm-ss";
+        return timestamp(pattern);
     }
 }

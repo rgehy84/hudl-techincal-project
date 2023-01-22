@@ -1,18 +1,30 @@
 package pages;
 
+import framework.BaseUtilities;
 import framework.WebDriverActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.List;
 
 public class LoginPage {
-    WebDriverActions wpa;
+    WebDriverActions wda;
+    WebDriver driver;
+    WebDriverWait wait;
 
 
     /* constructor for page factory setup */
     public LoginPage(WebDriver driver) {
-        wpa = new WebDriverActions(driver);
+        wda = new WebDriverActions(driver);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(15), Duration.ofSeconds(50));
+        this.driver =driver;
         PageFactory.initElements(driver, this);
     }
 
@@ -40,6 +52,52 @@ public class LoginPage {
 
     @FindBy(css = "a[class*='styles_hudlLogoContainer']")
     WebElement hudlLogo;
+
+    @FindBy(css = "input[data-qa-id='password-reset-input']")
+    WebElement passwordResetInputField;
+
+    @FindBy(css = "button[data-qa-id='password-reset-submit-btn']")
+    WebElement submitPasswordResetButton;
+
+    @FindBy(css = "h3.uni-headline")
+    WebElement passwordResetSuccessfulHeader;
+
+
+
+    @FindBy(css = "p[data-qa-id='error-display']")
+    WebElement unsuccessfulLoginAttemptErrorMessage;
+
+    @FindBy(name = "username")
+    WebElement organizationEmailAddressField;
+
+    @FindBy(css = "button[data-qa-id='log-in-with-sso']")
+    WebElement organizationLogInButton;
+
+    @FindBy(css = "button[data-qa-id='log-in-with-email-and-password']")
+    WebElement logInWithEmailAndPasswordButton;
+
+    @FindBy(css = "h2.uni-headline")
+    WebElement loginPageTitleHeader;
+
+
+    public WebElement getUnsuccessfulLoginAttemptErrorMessage() {
+        wait.until(ExpectedConditions.visibilityOf(unsuccessfulLoginAttemptErrorMessage));
+        return unsuccessfulLoginAttemptErrorMessage;
+    }
+
+    public WebElement getPasswordResetSuccessfulHeader() {
+        wait.until(ExpectedConditions.visibilityOf(passwordResetSuccessfulHeader));
+        return passwordResetSuccessfulHeader;
+    }
+
+    public WebElement getPasswordResetInputField() {
+        wait.until(ExpectedConditions.visibilityOf(passwordResetInputField));
+        return passwordResetInputField;
+    }
+
+    public WebElement getSubmitPasswordResetButton() {
+        return submitPasswordResetButton;
+    }
 
     /* getters */
     public WebElement getEmailAddressInputField() {
@@ -74,17 +132,34 @@ public class LoginPage {
         return hudlLogo;
     }
 
+    public WebElement getOrganizationEmailAddressField() {
+        return organizationEmailAddressField;
+    }
+
+    public WebElement getOrganizationLogInButton() {
+        return organizationLogInButton;
+    }
+
     /* actions on login page */
     public void enterEmailAddress(String emailAddress) {
-        wpa.enterTextIntoInputField(getEmailAddressInputField(), "Email Address", emailAddress);
+        wda.enterTextIntoInputField(getEmailAddressInputField(), "Email Address", emailAddress);
     }
 
     public void enterPassword(String password) {
-        wpa.enterTextIntoPasswordField(getPasswordInputField(), "Password", password);
+        wda.enterTextIntoPasswordField(getPasswordInputField(), "Password", password);
     }
 
     public void clickLoginBtn() {
-        wpa.click(getLoginBtn(), "Login button");
+        wda.click(getLoginBtn(), "Login button");
+    }
+
+    public WebElement getLogInWithEmailAndPasswordButton() {
+        return logInWithEmailAndPasswordButton;
+    }
+
+    public WebElement getLoginPageTitleHeader() {
+        wait.until(ExpectedConditions.visibilityOf(loginPageTitleHeader));
+        return loginPageTitleHeader;
     }
 
     public void loginToHudl(String emailAddress, String password) {
@@ -93,5 +168,40 @@ public class LoginPage {
         clickLoginBtn();
     }
 
+    public void clickNeedHelpLink() {
+        wda.click(getNeedHelpLink(), "Need Help? link");
+    }
+
+    public void enterPasswordResetEmail(String emailAddress) {
+        wda.enterTextIntoInputField(getPasswordResetInputField(), "Password reset email address", emailAddress);
+    }
+
+    public void clickSendPasswordResetButton() {
+        wda.click(getSubmitPasswordResetButton(), "Send Password Reset button");
+    }
+
+    public void resetPassword(String emailAddress) {
+        enterPasswordResetEmail(emailAddress);
+        clickSendPasswordResetButton();
+    }
+
+    public void clickLoginAsOrganizationButton() {
+        wda.click(getLogInWithOrganizationBtn(), "Log In with an Organization button");
+    }
+
+    public void logIntoHudlWithYourOrganization(String organizationEmailAddress) {
+        wda.enterTextIntoInputField(getOrganizationEmailAddressField(), "Email ", organizationEmailAddress);
+        wda.click(getOrganizationLogInButton(), "Log In button");
+    }
+
+    public void clickLogInWithEmailAndPassword() {
+        wda.click(getLogInWithEmailAndPasswordButton(), "Log In with Email and Password");
+    }
+
+    public List<WebElement> findAllLinksOnLoginPage() {
+        List<WebElement> links = driver.findElements(By.tagName("a"));
+        wda.print("No of links on Login Page: " + links.size());
+        return links;
+    }
 
 }

@@ -10,20 +10,21 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.*;
 
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 public class BaseDriver extends BaseUtilities {
-    WebDriver driver;
+//    WebDriver driver;
     String urlToStartTests;
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     /***
      * maximizes the browser window and sets in implicit wait of 15 seconds before timing out
      * @return driver that can be used in tests without making the original driver accessible to the public
      */
     public WebDriver getDriver() {
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-        return driver;
+        return driver.get();
     }
+
 
 
     /***
@@ -52,21 +53,25 @@ public class BaseDriver extends BaseUtilities {
     @BeforeMethod
     public void testSetup(@Optional("CHROME") Browsers browser) {
         switch (browser) {
-            case FIREFOX -> driver = new FirefoxDriver();
-            case CHROME -> driver = new ChromeDriver();
-            case SAFARI -> driver = new SafariDriver();
-            case IE -> driver = new InternetExplorerDriver();
-            case EDGE -> driver = new EdgeDriver();
+            case FIREFOX -> driver.set( new FirefoxDriver());
+            case CHROME -> driver.set(new ChromeDriver());
+            case SAFARI -> driver.set(new SafariDriver());
+            case IE -> driver.set(new InternetExplorerDriver());
+            case EDGE -> driver.set(new EdgeDriver());
         }
-        print("Tests will be executed in " + browser.name() + " browser");
+        getDriver().manage().window().maximize();
+        getDriver().manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
 
     /***
      * this method is used to tear down the webdriver instance after each method is executed
      */
+    @Parameters("close_browser_after_after_test_run")
     @AfterMethod
-    public void teardownDriver() {
-        getDriver().close();
+    public void teardownDriver(@Optional("true") boolean shouldCloseBrowserAfterTestExecution) {
+        if (shouldCloseBrowserAfterTestExecution == true) {
+            getDriver().close();
+        }
     }
 
     @Parameters("url_to_execute_tests")

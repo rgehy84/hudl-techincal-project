@@ -4,10 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="39765328-0471-4b19-bf9d-7b4380f1380f" name="Changes" comment="added WebDriverActions.java to simply the standard and most common used WebDriver actions ie click, input, get">
-      <change afterPath="$PROJECT_DIR$/testng-xml-runners/hudl-testng-runner.xml" afterDir="false" />
+    <list default="true" id="39765328-0471-4b19-bf9d-7b4380f1380f" name="Changes" comment="created page factories for Login, Home Page, Authenticated Navigation and started test cases for login page">
+      <change afterPath="$PROJECT_DIR$/src/test/java/framework/Assertions.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/framework/reporting/extent/ExtentManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/framework/reporting/extent/ExtentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/framework/reporting/extent/ExtentTestManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/framework/reporting/extent/SystemInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/framework/reporting/listeners/ExtentITestListenerClassAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/framework/reporting/listeners/ExtentReportListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/framework/reporting/listeners/ExtentTestNgFormatter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/extent.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/framework/BaseDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/framework/BaseDriver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/framework/BaseUtilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/framework/BaseUtilities.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/AuthNavigation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/AuthNavigation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/LoginPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/testcases/LoginTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/testcases/LoginTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testng-xml-runners/hudl-testng-runner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/testng-xml-runners/hudl-testng-runner.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +34,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="feature-create-hudl-selenium-framework" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -89,15 +105,32 @@
       </method>
     </configuration>
     <configuration name="/Users/ralphgehy/IdeaProjects/hudl-techincal-project/testng-xml-runners/hudl-testng-runner.xml" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="hudl-techincal-project" />
+      <shortenClasspath name="NONE" />
+      <useClassPathOnly />
       <option name="SUITE_NAME" value="$PROJECT_DIR$/testng-xml-runners/hudl-testng-runner.xml" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="GROUP_NAME" value="" />
       <option name="TEST_OBJECT" value="SUITE" />
+      <option name="VM_PARAMETERS" value="-ea -Dusername=&quot;rgehy84@gmail.com&quot; -Dpassword=&quot;_nAtGdL6Ucf28Ec&quot;" />
+      <option name="PARAMETERS" value="" />
+      <option name="OUTPUT_DIRECTORY" value="" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="wholeProject" />
+      </option>
+      <option name="PROPERTIES_FILE" value="" />
       <properties />
       <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="TestNG./Users/ralphgehy/IdeaProjects/hudl-techincal-project/testng-xml-runners/hudl-testng-runner.xml" />
+      <item itemvalue="TestNG.LoginTest" />
+      <item itemvalue="TestNG.LoginTest (1)" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="TestNG./Users/ralphgehy/IdeaProjects/hudl-techincal-project/testng-xml-runners/hudl-testng-runner.xml" />
@@ -150,7 +183,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674306507089</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="created page factories for Login, Home Page, Authenticated Navigation and started test cases for login page">
+      <created>1674311124767</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1674311124767</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -159,6 +199,8 @@
     <MESSAGE value="added capabilities of configuring browser to run tests in BaseDriver file to set up driver and tear down driver after run" />
     <MESSAGE value="added BaseUtilities.java for simplified methods of logging to the console and reporting" />
     <MESSAGE value="added WebDriverActions.java to simply the standard and most common used WebDriver actions ie click, input, get" />
-    <option name="LAST_COMMIT_MESSAGE" value="added WebDriverActions.java to simply the standard and most common used WebDriver actions ie click, input, get" />
+    <MESSAGE value="merged framework feature branch into develop branch" />
+    <MESSAGE value="created page factories for Login, Home Page, Authenticated Navigation and started test cases for login page" />
+    <option name="LAST_COMMIT_MESSAGE" value="created page factories for Login, Home Page, Authenticated Navigation and started test cases for login page" />
   </component>
 </project>

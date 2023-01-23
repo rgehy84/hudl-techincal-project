@@ -24,7 +24,7 @@ The framework also uses WebDriverManager to simplify the use of manually maintai
 
 The framework also enhances the assertions to document what is being verified and takes a screenshot which is added to the report. In addition, through the WebDriverActions class, it simplifies common methods which makes it faster and easier to automate the actual test cases.
 
-Lastly, the framework integrates ExtentReports with a custom listener that will write the results with screenshots on Assertions and well as screenshots on failures.
+Lastly, the framework integrates ExtentReports with a custom listener that will write the results with screenshots on Assertions as well as screenshots on failures.
 
 The current version of the framework is mainly focused on UI End to End testing but can add the capabilities of backend API testing as well as database testing. In addition, the framework can be enhanced to run headless, run on a VNC based Selenium Grid either locally or in a Cloud server.
 

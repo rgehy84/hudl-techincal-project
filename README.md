@@ -1,4 +1,4 @@
-# hudl-techincal-project
+# hudl-technical-project
 
 This is the Hudl Technical Project by Ralph Gehy
 
@@ -11,7 +11,7 @@ This Google Doc is the documentation of a potential issue I encountered after lo
 https://docs.google.com/document/d/1jk5yXJC_VRb99CpZV9LKvB235SKxkAM3rrAH9s72jhY/edit?usp=sharing
 
 The directory break down below displays the file structure that the framework and tests were built.
-<img width="339" alt="image" src="https://user-images.githubusercontent.com/19873511/213945905-c343f996-830e-45a7-b7c8-708ffd80aca4.png">
+<img width="497" alt="image" src="https://user-images.githubusercontent.com/19873511/213957083-7d5a1ad6-44af-4789-a64e-fba1e6037f47.png">
 
 ## Software Libraries Used
 This project was created with Java, Selenium WebDriver, Maven, TestNG, Extent Reports, WebDriverManager

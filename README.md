@@ -1,6 +1,6 @@
-# hudl-technical-project
+# Hudl Quality Engineering Technical Project
 
-This is the Hudl Technical Project by Ralph Gehy
+This is the Hudl Quality Engineering Technical Project by Ralph Gehy
 
 This goes through the Quality Assurance analysis and the Automated Testing of the Hudl login functionality. 
 

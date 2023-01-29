@@ -14,7 +14,11 @@ import java.net.URL;
 import static framework.reporting.extent.ExtentTestManager.getTest;
 
 public class Assertions extends BaseUtilities {
-    BaseDriver baseDriver = new BaseDriver();
+    WebDriver driver;
+
+    public Assertions(WebDriver driver) {
+        this.driver = driver;
+    }
 
     public void assertEquals(String validationMessage, String actualValidationValue, String expectedValidationValue) {
         assertEquals(validationMessage, actualValidationValue, expectedValidationValue, true);
@@ -39,8 +43,8 @@ public class Assertions extends BaseUtilities {
             }
             e.getStackTrace();
         }
-        if(baseDriver.getDriver() != null) {
-            print("<pre>URL: <a href=\"" + baseDriver.getDriver().getCurrentUrl() + "\" target=\"_blank\" />" + baseDriver.getDriver().getCurrentUrl() + "</a></pre>");
+        if(driver != null) {
+            print("<pre>URL: <a href=\"" + driver.getCurrentUrl() + "\" target=\"_blank\" />" + driver.getCurrentUrl() + "</a></pre>");
         }
     }
 
@@ -63,8 +67,8 @@ public class Assertions extends BaseUtilities {
             }
             e.getStackTrace();
         }
-        if(baseDriver.getDriver() != null) {
-            print("<pre>URL: <a href=\"" + baseDriver.getDriver().getCurrentUrl() + "\" target=\"_blank\" />" + baseDriver.getDriver().getCurrentUrl() + "</a></pre>");
+        if(driver != null) {
+            print("<pre>URL: <a href=\"" + driver.getCurrentUrl() + "\" target=\"_blank\" />" + driver.getCurrentUrl() + "</a></pre>");
         }
     }
 
@@ -88,8 +92,8 @@ public class Assertions extends BaseUtilities {
             }
             e.getStackTrace();
         }
-        if(baseDriver.getDriver() != null) {
-            print("<pre>URL: <a href=\"" + baseDriver.getDriver().getCurrentUrl() + "\" target=\"_blank\" />" + baseDriver.getDriver().getCurrentUrl() + "</a></pre>");
+        if(driver != null) {
+            print("<pre>URL: <a href=\"" + driver.getCurrentUrl() + "\" target=\"_blank\" />" + driver.getCurrentUrl() + "</a></pre>");
         }
     }
 
@@ -99,12 +103,12 @@ public class Assertions extends BaseUtilities {
      * @throws IOException throws exception
      */
     private void takeScreenshot(Status status) throws IOException {
-        if(baseDriver.getDriver() != null) {
+        if(driver != null) {
             try {
 
                 getTest()
                         .log(status, "Screenshot",
-                        MediaEntityBuilder.createScreenCaptureFromBase64String(base64conversion(baseDriver.getDriver())).build());
+                        MediaEntityBuilder.createScreenCaptureFromBase64String(base64conversion(driver)).build());
             } catch (Exception e) {
                 print("Screenshot could not be generated");
                 print(e.getMessage());

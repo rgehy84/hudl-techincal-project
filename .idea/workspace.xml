@@ -5,16 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="39765328-0471-4b19-bf9d-7b4380f1380f" name="Changes" comment="updated extent listener to add screenshots to reports&#10;moved test data for login tests data provider to csv file&#10;updated custom assertions to log steps to extent reports wih screenshots">
-      <change afterPath="$PROJECT_DIR$/extent-reports/extent-report.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-data/invalid-login-credentials.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-output/reports/2023-01-22/report_2023-01-22_163007.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/framework/RunLocations.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/framework/TestBase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/framework/driverfactory/DriverFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/extent-reports/extent-report.html" beforeDir="false" afterPath="$PROJECT_DIR$/extent-reports/extent-report.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/framework/Assertions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/framework/Assertions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/framework/reporting/listeners/ExtentITestListenerClassAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/framework/BaseDriver.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/framework/BaseUtilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/framework/BaseUtilities.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/framework/WebDriverActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/framework/WebDriverActions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/framework/reporting/listeners/ExtentReportListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/framework/reporting/listeners/ExtentReportListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/framework/reporting/listeners/ExtentTestNgFormatter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/AuthNavigation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/AuthNavigation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/HomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/HomePage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/pages/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/LoginPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/UserHomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/UserHomePage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/testcases/LoginTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/testcases/LoginTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testng-xml-runners/hudl-testng-runner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/testng-xml-runners/hudl-testng-runner.xml" afterDir="false" />
     </list>
@@ -26,8 +31,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -37,7 +42,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="develop" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -58,49 +63,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "/Users/ralphgehy/IdeaProjects/hudl-technical-project/src/test/java/framework"
   }
-}</component>
-  <component name="RunManager" selected="TestNG./Users/ralphgehy/IdeaProjects/hudl-techincal-project/testng-xml-runners/hudl-testng-runner.xml">
-    <configuration name="LoginTest (1)" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="hudl-techincal-project" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="testcases.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="testcases" />
-      <option name="MAIN_CLASS_NAME" value="testcases.LoginTest" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LoginTest" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="hudl-techincal-project" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="testcases.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="testcases" />
-      <option name="MAIN_CLASS_NAME" value="testcases.LoginTest" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="/Users/ralphgehy/IdeaProjects/hudl-techincal-project/testng-xml-runners/hudl-testng-runner.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/test/java/framework" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="/Users/ralphgehy/IdeaProjects/hudl-technical-project/testng-xml-runners/hudl-testng-runner.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="hudl-technical-project" />
       <shortenClasspath name="NONE" />
       <useClassPathOnly />
       <option name="SUITE_NAME" value="$PROJECT_DIR$/testng-xml-runners/hudl-testng-runner.xml" />
@@ -112,9 +90,6 @@
       <option name="VM_PARAMETERS" value="-ea -Dusername=&quot;rgehy84@gmail.com&quot; -Dpassword=&quot;_nAtGdL6Ucf28Ec&quot;" />
       <option name="PARAMETERS" value="" />
       <option name="OUTPUT_DIRECTORY" value="" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="wholeProject" />
-      </option>
       <option name="PROPERTIES_FILE" value="" />
       <properties />
       <listeners />
@@ -122,16 +97,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="TestNG./Users/ralphgehy/IdeaProjects/hudl-techincal-project/testng-xml-runners/hudl-testng-runner.xml" />
-      <item itemvalue="TestNG.LoginTest" />
-      <item itemvalue="TestNG.LoginTest (1)" />
-    </list>
+    <configuration name="/Users/ralphgehy/IdeaProjects/hudl-technical-project/testng-xml-runners/hudl-testng-runner.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="hudl-technical-project" />
+      <shortenClasspath name="NONE" />
+      <useClassPathOnly />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/testng-xml-runners/hudl-testng-runner.xml" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="GROUP_NAME" value="" />
+      <option name="TEST_OBJECT" value="SUITE" />
+      <option name="VM_PARAMETERS" value="-ea -Dusername=&quot;rgehy84@gmail.com&quot; -Dpassword=&quot;_nAtGdL6Ucf28Ec&quot;" />
+      <option name="PARAMETERS" value="" />
+      <option name="OUTPUT_DIRECTORY" value="" />
+      <option name="PROPERTIES_FILE" value="" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="TestNG./Users/ralphgehy/IdeaProjects/hudl-techincal-project/testng-xml-runners/hudl-testng-runner.xml" />
-        <item itemvalue="TestNG.LoginTest (1)" />
-        <item itemvalue="TestNG.LoginTest" />
+        <item itemvalue="TestNG./Users/ralphgehy/IdeaProjects/hudl-technical-project/testng-xml-runners/hudl-testng-runner.xml" />
+        <item itemvalue="TestNG./Users/ralphgehy/IdeaProjects/hudl-technical-project/testng-xml-runners/hudl-testng-runner.xml" />
       </list>
     </recent_temporary>
   </component>
@@ -195,6 +184,17 @@
     </task>
     <option name="localTasksCounter" value="8" />
     <servers />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />

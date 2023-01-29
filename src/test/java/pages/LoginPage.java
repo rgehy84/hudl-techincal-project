@@ -2,10 +2,10 @@ package pages;
 
 import framework.BaseUtilities;
 import framework.WebDriverActions;
+import framework.driverfactory.DriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,9 +14,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
-public class LoginPage {
+public class LoginPage extends BaseUtilities {
     WebDriverActions wda;
-    WebDriver driver;
     WebDriverWait wait;
 
 
@@ -24,7 +23,6 @@ public class LoginPage {
     public LoginPage(WebDriver driver) {
         wda = new WebDriverActions(driver);
         wait = new WebDriverWait(driver, Duration.ofSeconds(15), Duration.ofSeconds(50));
-        this.driver =driver;
         PageFactory.initElements(driver, this);
     }
 
@@ -183,7 +181,7 @@ public class LoginPage {
     public void resetPassword(String emailAddress) {
         enterPasswordResetEmail(emailAddress);
         clickSendPasswordResetButton();
-        wait.until(ExpectedConditions.elementToBeClickable(passwordResetSuccessfulHeader));
+        wait.until(ExpectedConditions.visibilityOf(passwordResetSuccessfulHeader));
     }
 
     public void clickLoginAsOrganizationButton() {
@@ -200,8 +198,8 @@ public class LoginPage {
     }
 
     public List<WebElement> findAllLinksOnLoginPage() {
-        List<WebElement> links = driver.findElements(By.tagName("a"));
-        wda.print("No of links on Login Page: " + links.size());
+        List<WebElement> links = DriverFactory.getDriver().findElements(By.tagName("a"));
+        print("No of links on Login Page: " + links.size());
         return links;
     }
 

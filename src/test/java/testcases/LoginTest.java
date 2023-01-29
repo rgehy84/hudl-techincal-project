@@ -3,44 +3,40 @@ package testcases;
 import com.github.hemanthsridhar.CSVUtils;
 import com.github.hemanthsridhar.lib.ExtUtils;
 import framework.Assertions;
-import framework.BaseDriver;
+import framework.TestBase;
 import framework.WebDriverActions;
+import framework.driverfactory.DriverFactory;
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.*;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 import pages.AuthNavigation;
 import pages.HomePage;
 import pages.LoginPage;
+
 import java.util.List;
 
-public class LoginTest extends BaseDriver {
-    WebDriverActions wda;
-    HomePage home;
-    LoginPage login;
-    AuthNavigation authNav;
-    Assertions assertions;
-
-    @BeforeMethod
-    public void setupTests() {
-        wda = new WebDriverActions(getDriver());
-        home = new HomePage(getDriver());
-        login = new LoginPage(getDriver());
-        authNav = new AuthNavigation(getDriver());
-        assertions = new Assertions();
-    }
+public class LoginTest extends TestBase {
 
     @Parameters({"username","password"})
     @Test(description = "Verify User successfully logs in with valid username and password", priority = 1)
     public void verifySuccessfulLoginToHudlWithUserNameAndPassword(String username, String password) {
-        wda.goToUrl(getUrlToStartTests());
+        HomePage home = new HomePage(DriverFactory.getDriver());
+        LoginPage login = new LoginPage(DriverFactory.getDriver());
+        AuthNavigation authNav = new AuthNavigation(DriverFactory.getDriver());
+        Assertions assertions = new Assertions(DriverFactory.getDriver());
         home.clickLoginBtn();
         login.loginToHudl(username,password);
         assertions.assertEquals("User is successfully logged in", authNav.getExploreLink().getText(), "Explore");
     }
 
     @Parameters({"username","password"})
-    @Test(description = "Verify user is user successfully logs out of Hudl", priority = 2)
+    @Test(description = "Verify user is user successfully logs out of Hudl")
     public void verifyUserIsSuccessfullyLoggedOutOfHudl(String username, String password) {
-        wda.goToUrl(getUrlToStartTests());
+        HomePage home = new HomePage(DriverFactory.getDriver());
+        LoginPage login = new LoginPage(DriverFactory.getDriver());
+        AuthNavigation authNav = new AuthNavigation(DriverFactory.getDriver());
+        Assertions assertions = new Assertions(DriverFactory.getDriver());
         home.clickLoginBtn();
         login.loginToHudl(username,password);
         authNav.logOutOfHudl();
@@ -49,9 +45,11 @@ public class LoginTest extends BaseDriver {
 
 
     @Parameters({"reset_password_username"})
-    @Test(description = "Verify forgot password feature shows sent password reset email message", priority = 3)
+    @Test(enabled = true, description = "Verify forgot password feature shows sent password reset email message", priority = 3)
     public void verifyForgotPasswordFeatureSendsEmail(String username) {
-        wda.goToUrl(getUrlToStartTests());
+        HomePage home = new HomePage(DriverFactory.getDriver());
+        LoginPage login = new LoginPage(DriverFactory.getDriver());
+        Assertions assertions = new Assertions(DriverFactory.getDriver());
         home.clickLoginBtn();
         login.clickNeedHelpLink();
         login.resetPassword(username);
@@ -63,7 +61,9 @@ public class LoginTest extends BaseDriver {
             description = "Verify user is unable to login with invalid login credentials", priority = 10)
     public void verifyThatUserIsUnableToLoginWhenInvalidLoginDataIsSubmitted(String username, String password, String testDescription) {
         print(testDescription);
-        wda.goToUrl(getUrlToStartTests());
+        HomePage home = new HomePage(DriverFactory.getDriver());
+        LoginPage login = new LoginPage(DriverFactory.getDriver());
+        Assertions assertions = new Assertions(DriverFactory.getDriver());
         home.clickLoginBtn();
         login.loginToHudl(username, password);
         assertions.assertEquals("Verify unsuccessful login attempt error is displayed", login.getUnsuccessfulLoginAttemptErrorMessage().getText(), "We didn't recognize that email and/or password.Need help?");
@@ -74,7 +74,9 @@ public class LoginTest extends BaseDriver {
     @Test(description = "Validate that user is unable to login as organization with invalid organization email address",
     priority = 10)
     public void validateThatUserIsUnableToLoginAsOrganizationWithInvalidEmailAddress(String username) {
-        wda.goToUrl(getUrlToStartTests());
+        HomePage home = new HomePage(DriverFactory.getDriver());
+        LoginPage login = new LoginPage(DriverFactory.getDriver());
+        Assertions assertions = new Assertions(DriverFactory.getDriver());
         home.clickLoginBtn();
         login.clickLoginAsOrganizationButton();
         login.logIntoHudlWithYourOrganization(username);
@@ -84,6 +86,10 @@ public class LoginTest extends BaseDriver {
     @Test(description = "Validate that user successfully switches between login as organization and " +
             "login with email and password functionality", priority = 5)
     public void validateThatUserSuccessfullySwitchesBetweenLoginAsOrganizationAndUser() {
+        WebDriverActions wda = new WebDriverActions(DriverFactory.getDriver());
+        HomePage home = new HomePage(DriverFactory.getDriver());
+        LoginPage login = new LoginPage(DriverFactory.getDriver());
+        Assertions assertions = new Assertions(DriverFactory.getDriver());
         wda.goToUrl(getUrlToStartTests());
         home.clickLoginBtn();
         login.clickLoginAsOrganizationButton();
@@ -94,7 +100,9 @@ public class LoginTest extends BaseDriver {
 
     @Test(description = "Validate links on Login page are not broken", priority = 6)
     public void validateLinksOnLoginPageAreNotBroken() {
-        wda.goToUrl(getUrlToStartTests());
+        HomePage home = new HomePage(DriverFactory.getDriver());
+        LoginPage login = new LoginPage(DriverFactory.getDriver());
+        Assertions assertions = new Assertions(DriverFactory.getDriver());
         home.clickLoginBtn();
         List<WebElement> loginPageLinks = login.findAllLinksOnLoginPage();
         for (WebElement loginPageLink : loginPageLinks) {
@@ -103,7 +111,7 @@ public class LoginTest extends BaseDriver {
         }
     }
 
-    @DataProvider(name = "invalid-login-data")
+    @DataProvider(name = "invalid-login-data", parallel = true)
     public Object[][] csvDataRead() throws Exception {
         String path = "test-data/invalid-login-credentials.csv";
         ExtUtils ext = new CSVUtils(path);

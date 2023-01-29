@@ -3,8 +3,10 @@ package framework.reporting.listeners;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-import framework.BaseDriver;
+import framework.BaseUtilities;
+import framework.driverfactory.DriverFactory;
 import framework.reporting.extent.ExtentManager;
+import org.apache.commons.lang3.SystemUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -20,16 +22,15 @@ import java.util.Objects;
 import static framework.reporting.extent.ExtentTestManager.getTest;
 import static framework.reporting.extent.ExtentTestManager.startTest;
 
-public class ExtentReportListener extends BaseDriver implements ITestListener, IReporter {
-    BaseDriver baseDriver;
+public class ExtentReportListener extends BaseUtilities implements ITestListener, IReporter {
     List<String> testRunnerOutput;
     private static ExtentReports reporter;
     private Map<String, String> systemInfo;
     private ExtentSparkReporter sparkReporter;
 
     public ExtentReportListener() {
-        String getDate = baseDriver.timestamp("yyyy-MM-dd");
-        String getTime = baseDriver.timestamp("HHmmss");
+        String getDate = timestamp("yyyy-MM-dd");
+        String getTime = timestamp("HHmmss");
 
         testRunnerOutput = new ArrayList<>();
         String reportPathStr = System.getProperty("reportPath");
@@ -81,7 +82,7 @@ public class ExtentReportListener extends BaseDriver implements ITestListener, I
     }
     @Override
     public void onStart(ITestContext iTestContext) {
-        iTestContext.setAttribute("WebDriver", this.getDriver());
+//        iTestContext.setAttribute("WebDriver", DriverFactory.getDriver());
 
     }
     @Override
@@ -91,19 +92,19 @@ public class ExtentReportListener extends BaseDriver implements ITestListener, I
     }
     @Override
     public void onTestStart(ITestResult iTestResult) {
-        startTest(getTestMethodName(iTestResult), "Testing: " + getTestMethodDescription(iTestResult));
+        startTest(getTestMethodName(iTestResult), "<strong>BROWSER:</strong> " + iTestResult.getMethod().getXmlTest().getParameter("browser_to_run_tests") + "" +
+                "<br /><strong>TEST:</strong> " + getTestMethodDescription(iTestResult) +
+                "<br /><strong>RUN LOCATION:</strong> " + iTestResult.getMethod().getXmlTest().getParameter("run_test_local_or_grid") +
+                "<br /><strong>URL:</strong> " + iTestResult.getMethod().getXmlTest().getParameter("url_to_execute_tests") +
+                "<br /><strong>OPERATING SYSTEM:</strong> " + SystemUtils.OS_NAME);
     }
-    @Override
-    public void onTestSuccess(ITestResult iTestResult) {
-        //ExtentReports log operation for passed tests.
-        getTest().log(Status.PASS, getTestMethodName(iTestResult) + " Test passed");
-    }
+
     @Override
     public void onTestFailure(ITestResult iTestResult) {
         print(getTestMethodName(iTestResult) + " test is failed.");
         //Get driver from BaseTest and assign to local webdriver variable.
         Object testClass = iTestResult.getInstance();
-        WebDriver driver = ((BaseDriver) testClass).getDriver();
+        WebDriver driver = ((DriverFactory) testClass).getDriver();
         //Take base64Screenshot screenshot for extent reports
         String base64Screenshot =
                 "data:image/png;base64," + ((TakesScreenshot) Objects.requireNonNull(driver)).getScreenshotAs(OutputType.BASE64);

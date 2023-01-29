@@ -1,5 +1,6 @@
 package framework;
 
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -8,12 +9,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class WebDriverActions extends BaseUtilities {
-    WebDriver driver;
-    WebDriverWait wait;
+
+    static WebDriver driver;
 
     public WebDriverActions(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(15), Duration.ofSeconds(50));
     }
 
     /***
@@ -30,9 +30,15 @@ public class WebDriverActions extends BaseUtilities {
      * @param element => WebDriverElement that should be clicked
      *
      */
-    public void click(WebElement element, String elementNameOrDescription) {
+    public static void click(WebElement element, String elementNameOrDescription) {
         print("Click on " + elementNameOrDescription);
-        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15), Duration.ofSeconds(50));
+        wait.ignoring(StaleElementReferenceException.class)
+                .until((WebDriver d) -> {
+                    element.click();
+                    return true;
+                });
+
     }
 
     /***
@@ -43,7 +49,8 @@ public class WebDriverActions extends BaseUtilities {
      */
     public void enterTextIntoInputField(WebElement element, String inputTextFieldName, String textToInput) {
         print("Enter text in " + inputTextFieldName + " field: " + textToInput);
-        wait.until(ExpectedConditions.elementToBeClickable(element)).sendKeys(textToInput);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15), Duration.ofSeconds(50));
+        wait.ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(element)).sendKeys(textToInput);
     }
 
     /***
@@ -55,6 +62,7 @@ public class WebDriverActions extends BaseUtilities {
     public void enterTextIntoPasswordField(WebElement element, String inputPasswordFieldName, String
             passwordToInput) {
         print("Enter password in " + inputPasswordFieldName + " field");
-        wait.until(ExpectedConditions.elementToBeClickable(element)).sendKeys(passwordToInput);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15), Duration.ofSeconds(50));
+        wait.ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(element)).sendKeys(passwordToInput);
     }
 }

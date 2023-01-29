@@ -15,7 +15,7 @@ public class BaseUtilities {
      * For pass or fail, use the method with the status parameter
      * @param textToOutput => text that will be logged in reports
      */
-    public void print(String textToOutput) {
+    public static void print(String textToOutput) {
         print(textToOutput, Status.INFO);
     }
 
@@ -25,7 +25,7 @@ public class BaseUtilities {
      * @param textToOutput => text that will be logged in reports
      * @param status => message type displayed in the extent report
      */
-    public void print(String textToOutput, Status status) {
+    public static void print(String textToOutput, Status status) {
         Reporter.log(textToOutput, true);
 
         try {

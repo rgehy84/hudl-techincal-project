@@ -54,3 +54,7 @@ Thank you for taking the time to review my Hudl Technical Project. While this pr
 1. Refactored how the drivers are created in order to allow parallel execution while still cleaning maintaining the use of the Page Object Model as well as the highly customized Extent Report. 
 2. Integrated the ability to run the tests either on the local machine or on a Selenium Grid environment by passing the parameters of either LOCAL or GRID to in the TestNG XML file as well as the Grid URL. Therefore, you can either run on a local grid, grid hosted on internal server behind VPN restricted access, or a SAAS enterprise grid provider such as AWS Device Farm, Browser Stack, and/or SauceLabs.
 
+### Extent Report Updates
+<img width="1433" alt="image" src="https://user-images.githubusercontent.com/19873511/215299249-61e3d149-93ed-4d9a-b829-05d2ae8bdd42.png">
+
+![image](https://user-images.githubusercontent.com/19873511/215299430-bf525166-3c66-4558-a0ab-2f0ddd71b9f8.png)

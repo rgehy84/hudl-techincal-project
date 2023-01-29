@@ -48,3 +48,9 @@ Below is a sample report generated from the test execution. You can see the HTML
 
 ## Conclusion
 Thank you for taking the time to review my Hudl Technical Project. While this project was written in Java, while getting familiar with Selenium for Python, many of the features of this framework can be implemented in a Python Selenium framework. The concepts for the page object model when automating the test cases are the same in Python as they are in Java.
+
+
+## *** Update ***
+1. Refactored how the drivers are created in order to allow parallel execution while still cleaning maintaining the use of the Page Object Model as well as the highly customized Extent Report. 
+2. Integrated the ability to run the tests either on the local machine or on a Selenium Grid environment by passing the parameters of either LOCAL or GRID to in the TestNG XML file as well as the Grid URL. Therefore, you can either run on a local grid, grid hosted on internal server behind VPN restricted access, or a SAAS enterprise grid provider such as AWS Device Farm, Browser Stack, and/or SauceLabs.
+
